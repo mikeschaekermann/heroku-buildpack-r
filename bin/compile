@@ -84,3 +84,8 @@ pushd $VENDOR_DIR/glibc-2.7 > /dev/null && rm -rf !(string|time) && popd > /dev/
 
 # HACK
 cp $VENDOR_DIR/gcc-4.3/lib64/* $VENDOR_DIR/R/lib64/R/lib
+
+# start Rserve instance
+echo "Starting Rserve instance"
+/app/vendor/R/bin/R CMD BATCH /app/startRserve.r
+echo "Rserve instance started"
