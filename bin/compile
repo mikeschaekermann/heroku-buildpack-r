@@ -61,17 +61,15 @@ mkdir -p /app/vendor/R/lib64/R/doc/html
 touch /app/vendor/R/lib64/R/doc/html/R.css
 
 # set the CRAN mirror and run the init.r program
-/app/vendor/R/bin/R -s --no-save <<RPROG > indent
+/app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
   r["CRAN"] <- "$CRAN_MIRROR";
   options(repos=r);
-  install.packages("Rserve", dependencies = TRUE)
-  require("Rserve")
-  Rserve()
-  `cat $BUILD_DIR/init.r`
 RPROG
+
+/app/vendor/R/bin/R --no-save CMD BATCH $BUILD_DIR/init.r
 
 echo "R $R_VERSION successfully installed" | indent
 
