@@ -67,7 +67,10 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
   r <- getOption("repos");
   r["CRAN"] <- "$CRAN_MIRROR";
   options(repos=r);
-  `cat $BUILD_DIR/init.r --no-save`
+  install.packages("Rserve", dependencies = TRUE)
+  require("Rserve")
+  Rserve()
+  `cat $BUILD_DIR/init.r`
 RPROG
 
 echo "R $R_VERSION successfully installed" | indent
