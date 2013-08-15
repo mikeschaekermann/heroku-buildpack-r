@@ -67,9 +67,8 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
   r <- getOption("repos");
   r["CRAN"] <- "$CRAN_MIRROR";
   options(repos=r);
+  `cat $BUILD_DIR/init.r`
 RPROG
-
-/app/vendor/R/bin/R --no-save CMD BATCH $BUILD_DIR/init.r
 
 echo "R $R_VERSION successfully installed" | indent
 
